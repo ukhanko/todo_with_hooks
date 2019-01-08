@@ -1,7 +1,9 @@
 {
+  "plugins": ["react-hooks"],
   "env": {"browser": true},
   "extends": ["airbnb"],
   "rules": {
-    "linebreak-style":"off"
+    "linebreak-style":"off",
+    "react-hooks/rules-of-hooks": "error"
   }
 }
