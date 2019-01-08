@@ -1,29 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Task from './Task';
 
-const Content = () => {
-  const todos = [
-    {
-      id: 1,
-      title: 'First',
-      content: 'Should must be done',
-    },
-    {
-      id: 2,
-      title: 'Second',
-      content: 'Not necessary',
-    },
-  ];
-  return (
-    <div className="d-flex">
-      {todos.map(el => (
-        <Task
-          key={el.id}
-          {...el}
-        />
-      ))}
-    </div>
-  );
+const Content = ({ tasks }) => (
+  <div className="d-flex">
+    {tasks.map(el => (
+      <Task
+        key={el.id}
+        {...el}
+      />
+    ))}
+  </div>
+);
+
+Content.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Content;

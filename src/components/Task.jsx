@@ -1,12 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default task => (
+const Task = ({ title, content }) => (
   <div className="card col-3 m-2">
     <div className="card-header text-white bg-primary">
-      {task.title}
+      {title}
     </div>
     <div className="card-body">
-      {task.content}
+      {content}
     </div>
   </div>
 );
+
+Task.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
+
+export default Task;
