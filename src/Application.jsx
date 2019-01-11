@@ -3,6 +3,10 @@ import Toolbar from './components/Toolbar';
 import Content from './components/Content';
 
 class App extends React.Component {
+  static addHandler(values) {
+    console.log('values: ', values);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +37,9 @@ class App extends React.Component {
     const { tasks } = this.state;
     return (
       <div>
-        <Toolbar />
+        <Toolbar
+          addHandler={App.addHandler}
+        />
         <Content tasks={tasks} />
       </div>
     );
