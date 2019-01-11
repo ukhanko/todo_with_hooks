@@ -1,36 +1,34 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import Toolbar from './components/Toolbar';
 import Content from './components/Content';
 
-class App extends React.Component {
-  static addHandler(values) {
-    console.log('values: ', values);
-  }
+const LOCAL_STORE_NAME = 'todo-state';
 
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tasks: [],
-      // tasks: [
-      //   {
-      //     id: 1,
-      //     title: 'First',
-      //     content: 'Should must be done',
-      //   },
-      //   {
-      //     id: 2,
-      //     title: 'Second',
-      //     content: 'Not necessary',
-      //   },
-      // ],
     };
   }
 
   componentDidMount() {
-    const state = (localStorage['todo-state'])
-      ? JSON.parse(localStorage['todo-state'])
+    const state = (localStorage[LOCAL_STORE_NAME])
+      ? JSON.parse(localStorage[LOCAL_STORE_NAME])
       : {};
     this.setState(state);
+  }
+
+  addHandler(values) {
+    const { tasks } = this.state;
+    const id = uuid();
+    this.setState(
+      { tasks: [...tasks, { ...values, id }] },
+      () => {
+        localStorage[LOCAL_STORE_NAME] = JSON.stringify(this.state);
+      },
+    );
   }
 
   render() {
@@ -38,7 +36,7 @@ class App extends React.Component {
     return (
       <div>
         <Toolbar
-          addHandler={App.addHandler}
+          addHandler={values => this.addHandler(values)}
         />
         <Content tasks={tasks} />
       </div>
