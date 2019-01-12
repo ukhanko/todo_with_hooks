@@ -46,6 +46,7 @@ class TaskAdd extends React.Component {
           <button
             type="submit"
             className="btn btn-primary"
+            disabled={!title || !content}
           >
             {'Add'}
           </button>

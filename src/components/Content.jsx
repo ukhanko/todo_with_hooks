@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Task from './Task';
 
-const Content = ({ tasks }) => (
-  <div className="d-flex">
+const Content = ({ tasks, removeHandler }) => (
+  <div className="d-flex flex-wrap">
     {tasks.map(el => (
       <Task
         key={el.id}
+        removeHandler={removeHandler}
         {...el}
       />
     ))}
@@ -15,6 +16,7 @@ const Content = ({ tasks }) => (
 
 Content.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeHandler: PropTypes.func.isRequired,
 };
 
 export default Content;

@@ -31,6 +31,16 @@ class App extends React.Component {
     );
   }
 
+  removeHandler(id) {
+    const { tasks } = this.state;
+    this.setState(
+      { tasks: tasks.filter(task => task.id !== id) },
+      () => {
+        localStorage[LOCAL_STORE_NAME] = JSON.stringify(this.state);
+      },
+    );
+  }
+
   render() {
     const { tasks } = this.state;
     return (
@@ -38,7 +48,10 @@ class App extends React.Component {
         <Toolbar
           addHandler={values => this.addHandler(values)}
         />
-        <Content tasks={tasks} />
+        <Content
+          tasks={tasks}
+          removeHandler={id => this.removeHandler(id)}
+        />
       </div>
     );
   }
