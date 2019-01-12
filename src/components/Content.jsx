@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Task from './Task';
 
 const Content = ({ tasks, removeHandler }) => (
-  <div className="d-flex flex-wrap">
+  <div className="d-flex flex-wrap align-items-start">
     {tasks.map(el => (
       <Task
         key={el.id}
