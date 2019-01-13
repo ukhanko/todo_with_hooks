@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import Toolbar from './components/Toolbar';
-import Content from './components/Content';
+import Task from './components/Task';
 
 const LOCAL_STORE_NAME = 'todo-state';
 
@@ -48,10 +48,15 @@ class App extends React.Component {
         <Toolbar
           addHandler={values => this.addHandler(values)}
         />
-        <Content
-          tasks={tasks}
-          removeHandler={id => this.removeHandler(id)}
-        />
+        <div className="d-flex flex-wrap align-items-start">
+          {tasks.map(el => (
+            <Task
+              key={el.id}
+              removeHandler={id => this.removeHandler(id)}
+              {...el}
+            />
+          ))}
+        </div>
       </div>
     );
   }
