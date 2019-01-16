@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import './style.scss';
 import Application from './container/Application';
-import reducer from './container/reducer';
+import reducer, { initialState } from './container/reducer';
 
 const ROOT_CONTAINER_SELECTOR = 'root';
 const LOCAL_STORE_NAME = 'todo-state';
@@ -12,7 +12,7 @@ const rootEl = document.getElementById(ROOT_CONTAINER_SELECTOR);
 
 const store = createStore(reducer, (localStorage[LOCAL_STORE_NAME])
   ? JSON.parse(localStorage[LOCAL_STORE_NAME])
-  : {});
+  : initialState);
 
 store.subscribe(() => console.log('store: ', store.getState()));
 store.subscribe(() => {
